@@ -21,6 +21,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
+import com.example.lunchtray.R
 import com.example.lunchtray.databinding.FragmentEntreeMenuBinding
 import com.example.lunchtray.model.OrderViewModel
 
@@ -46,10 +48,9 @@ class EntreeMenuFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentEntreeMenuBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +58,8 @@ class EntreeMenuFragment : Fragment() {
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = sharedViewModel
-            // TODO: initialize the EntreeMenuFragment variables
+            // Initialize the EntreeMenuFragment variables
+            entreeMenuFragment = this@EntreeMenuFragment
         }
     }
 
@@ -65,15 +67,22 @@ class EntreeMenuFragment : Fragment() {
      * Navigate to the side menu fragment.
      */
     fun goToNextScreen() {
-        // TODO: Navigate to the SideMenuFragment
+        // Navigate to the SideMenuFragment
+        binding.root.findNavController().navigate(
+            R.id.action_entreeMenuFragment_to_sideMenuFragment
+        )
     }
 
     /**
      * Cancel the order and start over.
      */
     fun cancelOrder() {
-        // TODO: Reset order in view model
-        // TODO: Navigate back to the [StartFragment] to start over
+        // Reset order in view model
+        sharedViewModel.resetOrder()
+        // Navigate back to the [StartFragment] to start over
+        binding.root.findNavController().navigate(
+            R.id.action_entreeMenuFragment_to_startOrderFragment
+        )
     }
 
     /**
