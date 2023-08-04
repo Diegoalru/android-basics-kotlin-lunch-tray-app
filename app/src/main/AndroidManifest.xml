@@ -15,6 +15,7 @@
   ~ limitations under the License.
   -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="auto"
     package="com.example.lunchtray">
 
     <application
@@ -26,7 +27,6 @@
         android:theme="@style/Theme.LunchTray">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
