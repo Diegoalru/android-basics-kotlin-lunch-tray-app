@@ -26,7 +26,10 @@
             name="viewModel"
             type="com.example.lunchtray.model.OrderViewModel" />
 
-        <!-- TODO: Add the data binding variable for the AccompanimentMenuFragment -->
+        <!-- Add the data binding variable for the AccompanimentMenuFragment -->
+        <variable
+            name="accompanimentMenuFragment"
+            type="com.example.lunchtray.ui.order.AccompanimentMenuFragment" />
     </data>
 
 
@@ -49,9 +52,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <!-- TODO: set the accompaniment in the view model when the RadioButton is clicked -->
+                <!-- Set the accompaniment in the view model when the RadioButton is clicked -->
                 <RadioButton
                     android:id="@+id/bread"
+                    android:onClick="@{() -> viewModel.setAccompaniment(`bread`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceBody1"
@@ -77,9 +81,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/bread_description" />
 
-                <!-- TODO: set the accompaniment in the view model when the RadioButton is clicked -->
+                <!-- Set the accompaniment in the view model when the RadioButton is clicked -->
                 <RadioButton
                     android:id="@+id/berries"
+                    android:onClick="@{() -> viewModel.setAccompaniment(`berries`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceBody1"
@@ -107,24 +112,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/soup_description" />
 
-                <!-- TODO: set the RadioButton text to the accompaniment name using the view model -->
-                <!-- TODO: set the accompaniment in the view model when the RadioButton is clicked -->
+                <!-- Set the RadioButton text to the accompaniment name using the view model -->
+                <!-- Set the accompaniment in the view model when the RadioButton is clicked -->
                 <RadioButton
                     android:id="@+id/pickles"
+                    android:onClick="@{() -> viewModel.setAccompaniment(`pickles`)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceBody1"
                     android:text='@{viewModel.menuItems["pickles"].name}'
                     tools:text="Accompaniment 3" />
 
-                <!-- TODO: set the text to the accompaniment description using the view model -->
+                <!-- Set the text to the accompaniment description using the view model -->
                 <TextView
                     android:id="@+id/pickles_description"
                     style="@style/Widget.MenuItem.TextView.Info"
                     android:text='@{viewModel.menuItems["pickles"].description}'
                     tools:text="Accompaniment 3 description" />
 
-                <!-- TODO: set the text to the accompaniment price using the view model -->
+                <!-- Set the text to the accompaniment price using the view model -->
                 <TextView
                     android:id="@+id/pickles_price"
                     style="@style/Widget.MenuItem.TextView.Info"
@@ -144,25 +150,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/accompaniment_options" />
 
-            <!-- TODO: set the text to the current subtotal value from the view model -->
+            <!-- Set the text to the current subtotal value from the view model -->
             <TextView
                 android:id="@+id/subtotal"
+                android:text="@{@string/subtotal(viewModel.subtotal)}"
                 style="@style/Widget.LunchTray.TextView.Subtotal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider"
                 tools:text="Subtotal $5.00"/>
 
-            <!-- TODO: cancel the order when clicked -->
+            <!-- Cancel the order when clicked -->
             <Button
                 android:id="@+id/cancel_button"
+                android:onClick="@{() -> accompanimentMenuFragment.cancelOrder()}"
                 style="@style/Widget.Order.Button.Cancel"
                 app:layout_constraintEnd_toStartOf="@id/next_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/next_button" />
 
-            <!-- TODO: go to the next screen when clicked -->
+            <!-- Go to the next screen when clicked -->
             <Button
                 android:id="@+id/next_button"
+                android:onClick="@{() -> accompanimentMenuFragment.goToNextScreen()}"
                 style="@style/Widget.Order.Button.Next"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
